@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlucoseDetect AI Test</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <div class="video-container no-print">
+        <video autoplay muted loop id="bgVideo">
+            <source src="{{ url_for('static', filename='background.mp4') }}" type="video/mp4">
+        </video>
+        <div class="video-overlay"></div>
+    </div>
+
+    <header class="academic-header no-print">
+        <div class="header-content">
+            <div class="students">Project by: <span>Berkant AKSOY</span> & <span>Ece AYFER</span></div>
+            <div class="supervisors">
+                Supervisors: 
+                <a href="https://ubs.ikc.edu.tr/ABPDS/AcademicInformation/BilgiGoruntulemev2/Index?pid=758uddFyuTvSK5Bc0AEK3A!xGGx!!xGGx!" target="_blank" class="supervisor-link">Prof. Dr. Mustafa ŞEN</a> & 
+                <a href="https://ubs.ikc.edu.tr/ABPDS/AcademicInformation/BilgiGoruntulemev2/Index?pid=AkdonSyEbPP5WfgKHzxUWg!xGGx!!xGGx!" target="_blank" class="supervisor-link">Assoc. Prof. Dr. Volkan KILIÇ</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="loginSection" class="full-height center-content no-print">
+        <div class="glass-panel login-panel">
+            <h1 class="brand-title">GlucoseDetect <span class="ai-text">AI</span></h1>
+            <p class="brand-subtitle">AI-POWERED ELECTROCHEMICAL ANALYSIS</p>
+            <form onsubmit="event.preventDefault(); login();">
+                <div class="input-wrapper"><input type="text" id="username" placeholder="Username" autocomplete="off"></div>
+                <div class="input-wrapper"><input type="password" id="password" placeholder="Password"></div>
+                <div id="loginError" class="error-message hidden">
+                    <strong>⚠️ Access Denied</strong>
+                    <p>Authentication failed. Contact <a href="mailto:berkantaksyy@gmail.com">berkantaksyy@gmail.com</a>.</p>
+                </div>
+                <button type="submit" class="btn-glow">ACCESS SYSTEM</button>
+            </form>
+        </div>
+    </section>
+
+    <section id="dashboardSection" class="full-height center-content hidden no-print">
+        <div class="dashboard-wrapper">
+            <div class="dash-header">
+                <div class="status-indicator"><span class="pulse-dot"></span> System Operational</div>
+                <button class="btn-text" onclick="logout()">LOGOUT</button>
+            </div>
+
+            <div class="dash-grid">
+                <div class="glass-panel control-col">
+                    <h3>DATA INPUT</h3>
+                    <div class="upload-zone" onclick="document.getElementById('fileInput').click()">
+                        <div class="upload-icon">📂</div>
+                        <p>Upload Raw Data (.csv / .xlsx)</p>
+                        <input type="file" id="fileInput" accept=".csv, .xlsx, .xls" hidden onchange="handleFileSelect()">
+                        <span id="fileName" class="file-name-display"></span>
+                    </div>
+                    <div class="input-group-modern">
+                        <label>Expected Concentration (mM)</label>
+                        <input type="number" id="expectedConc" placeholder="e.g. 3.0" step="0.1">
+                        <small style="color:#aaa;">Optional: For accuracy check.</small>
+                    </div>
+                    <button class="btn-glow full-width" onclick="analyzeData()" style="margin-top:20px;">RUN DIAGNOSTIC</button>
+                </div>
+
+                <div class="glass-panel result-col">
+                    <h3>DIAGNOSTIC RESULTS</h3>
+                    <div id="loader" class="hidden centered-state"><div class="spinner"></div><p>Calculating...</p></div>
+                    <div id="initial-state" class="centered-state"><p>System ready.</p></div>
+
+                    <div id="resultContent" class="hidden">
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <span class="metric-label">CALCULATED CONCENTRATION</span>
+                                <span class="metric-val" id="resPred">--</span>
+                                <span class="unit">mM</span>
+                            </div>
+                            <div class="metric-card">
+                                <span class="metric-label">SYSTEM STATUS</span>
+                                <span class="metric-val status-text" id="resStatus" style="font-size:16px;">--</span>
+                            </div>
+                        </div>
+                        <div class="chart-box">
+                            <canvas id="signalChart"></canvas>
+                        </div>
+                        <button class="btn-pdf" onclick="printReport()">📄 GENERATE OFFICIAL REPORT</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-panel history-panel">
+                <h3>ANALYSIS HISTORY</h3>
+                <table class="history-table">
+                    <thead><tr><th>Time</th><th>File</th><th>Result</th><th>Status</th></tr></thead>
+                    <tbody id="historyBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <div class="footer-signature no-print">
+        <p>Designed & Developed by <a href="https://www.linkedin.com/in/berkantaksyy/" target="_blank">Berkant AKSOY</a></p>
+    </div>
+
+    <div id="printArea" class="print-only">
+        <div class="report-header">
+            <h1 style="color:#007bff; margin-bottom:5px;">LABORATORY ANALYSIS REPORT</h1>
+            <p>Non-Enzymatic Glucose Detection System</p>
+            <hr>
+        </div>
+        
+        <div class="report-meta">
+            <p><strong>Date:</strong> <span id="pDate"></span></p>
+            <p><strong>File Name:</strong> <span id="pFile"></span></p>
+            <p><strong>Operator:</strong> Berkant AKSOY </p>
+        </div>
+
+        <div class="report-results">
+            <div class="r-box">
+                <span>Concentration</span>
+                <h2 id="pPred">-- mM</h2>
+            </div>
+            <div class="r-box">
+                <span>System Status</span>
+                <h2 id="pStatus">--</h2>
+            </div>
+        </div>
+
+        <div class="report-chart">
+            <h3>Signal Analysis</h3>
+            <img id="pChartImg" style="width:100%; border:1px solid #ddd;">
+        </div>
+
+        <div class="report-footer">
+            <p><strong>Supervisors:</strong> Prof. Dr. Mustafa ŞEN & Assoc. Prof. Dr. Volkan KILIÇ</p>
+            <p>Izmir Katip Celebi University - Biomedical Engineering Department</p>
+            <p style="font-size:10px; color:#999; margin-top:10px;">Generated by GlucoseDetect AI</p>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

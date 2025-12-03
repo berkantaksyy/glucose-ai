@@ -1,0 +1,358 @@
+:root {
+    --glass-bg: rgba(16, 20, 28, 0.65); /* Çok koyu, transparan mavi-siyah */
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --accent: #4cc9f0; /* Neon mavi ama tatlı */
+    --accent-glow: rgba(76, 201, 240, 0.4);
+    --text-main: #ffffff;
+    --text-muted: #a0a0a0;
+}
+
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-main);
+    overflow: hidden;
+    height: 100vh;
+    background: #000;
+}
+
+/* VIDEO BACKGROUND */
+.video-container {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -1;
+}
+#bgVideo {
+    width: 100%; height: 100%; object-fit: cover;
+}
+.video-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Videoyu biraz karartır */
+    backdrop-filter: blur(4px); /* Hafif bir fluluk */
+}
+
+/* TOP HEADER */
+.academic-header {
+    position: fixed;
+    top: 0; left: 0; width: 100%;
+    padding: 15px 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+    z-index: 100;
+    text-align: center;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+}
+.academic-header .students { margin-bottom: 4px; color: #fff; }
+.academic-header .supervisors { color: var(--text-muted); font-size: 11px; text-transform: uppercase; }
+.academic-header span { color: var(--accent); font-weight: 600; }
+
+/* UTILS */
+.full-height { height: 100vh; width: 100%; }
+.center-content { display: flex; justify-content: center; align-items: center; }
+.hidden { display: none !important; }
+
+/* GLASS PANELS (The Core Design) */
+.glass-panel {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+}
+
+/* LOGIN */
+.login-panel { width: 360px; text-align: center; }
+.brand-title { font-size: 28px; font-weight: 300; margin: 0; letter-spacing: -1px; }
+.brand-title .ai-text { font-weight: 700; color: var(--accent); }
+.brand-subtitle { font-size: 12px; color: var(--text-muted); letter-spacing: 2px; margin-top: 5px; margin-bottom: 30px; text-transform: uppercase; }
+
+.input-wrapper input {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    width: 100%; padding: 14px;
+    margin-bottom: 15px; border-radius: 8px;
+    color: white; outline: none; font-family: inherit;
+    transition: 0.3s;
+    box-sizing: border-box;
+}
+.input-wrapper input:focus { border-color: var(--accent); background: rgba(255,255,255,0.1); }
+
+.btn-glow {
+    background: var(--accent);
+    color: #000;
+    border: none; padding: 14px; width: 100%;
+    border-radius: 8px; font-weight: 700; letter-spacing: 1px;
+    cursor: pointer; transition: 0.3s;
+    box-shadow: 0 0 15px var(--accent-glow);
+}
+.btn-glow:hover { transform: translateY(-2px); box-shadow: 0 0 25px var(--accent-glow); background: #fff; }
+
+/* DASHBOARD */
+.dashboard-wrapper { width: 900px; max-width: 95%; margin-top: 60px; }
+.dash-header { display: flex; justify-content: space-between; margin-bottom: 20px; align-items: center; }
+.status-indicator { font-size: 12px; color: var(--accent); display: flex; align-items: center; gap: 8px; }
+.pulse-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 8px var(--accent); animation: pulse 2s infinite; }
+@keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+
+.btn-text { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
+.btn-text:hover { color: #fff; }
+
+.dash-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 20px; }
+
+.glass-panel h3 { margin: 0 0 20px 0; font-size: 14px; color: var(--text-muted); border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; letter-spacing: 1px; }
+
+/* UPLOAD AREA */
+.upload-zone {
+    border: 2px dashed rgba(255,255,255,0.1);
+    border-radius: 12px; padding: 30px; text-align: center;
+    cursor: pointer; transition: 0.3s; margin-bottom: 20px;
+}
+.upload-zone:hover { background: rgba(255,255,255,0.05); border-color: var(--accent); }
+.upload-icon { color: var(--accent); margin-bottom: 10px; }
+.upload-zone p { margin: 0; font-size: 12px; color: var(--text-muted); }
+.file-name-display { display: block; margin-top: 8px; font-size: 12px; color: #fff; }
+
+/* INPUT GROUP MODERN (Referans Değer) */
+.input-group-modern {
+    margin-top: 20px;
+    text-align: left;
+}
+.input-group-modern label {
+    display: block;
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+.input-group-modern input {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: inherit;
+    outline: none;
+}
+.input-group-modern input:focus {
+    border-color: var(--accent);
+    background: rgba(255,255,255,0.1);
+}
+
+/* RESULTS AREA */
+.centered-state { text-align: center; padding: 40px 0; color: var(--text-muted); font-size: 14px; }
+.spinner {
+    width: 30px; height: 30px; border: 2px solid rgba(255,255,255,0.1);
+    border-top-color: var(--accent); border-radius: 50%;
+    animation: spin 1s linear infinite; margin: 0 auto 15px auto;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.metrics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
+.metric-card { background: rgba(255,255,255,0.03); padding: 15px; border-radius: 8px; text-align: center; }
+.metric-label { display: block; font-size: 10px; color: var(--text-muted); letter-spacing: 1px; margin-bottom: 5px; }
+.metric-val { font-size: 24px; font-weight: 600; color: #fff; }
+.unit { font-size: 14px; color: var(--text-muted); font-weight: 400; }
+.highlight { color: var(--accent); text-shadow: 0 0 10px var(--accent-glow); }
+
+.chart-box { height: 220px; width: 100%; }
+
+/* FOOTER SIGNATURE */
+.footer-signature {
+    position: fixed;
+    bottom: 15px;
+    width: 100%;
+    text-align: center;
+    z-index: 100;
+    pointer-events: none;
+}
+.footer-signature p {
+    margin: 0;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+.footer-signature a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 700;
+    pointer-events: auto;
+    transition: all 0.3s ease;
+    position: relative;
+}
+.footer-signature a:hover {
+    color: #fff;
+    text-shadow: 0 0 10px var(--accent-glow);
+}
+.footer-signature a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: -2px;
+    left: 0;
+    background-color: #fff;
+    transition: width 0.3s;
+}
+.footer-signature a:hover::after {
+    width: 100%;
+}
+
+/* SUPERVISOR LINKS DESIGN */
+.supervisors {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+.supervisor-link {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border-bottom: 1px dotted transparent;
+    position: relative;
+}
+.supervisor-link:hover {
+    color: #fff;
+    text-shadow: 0 0 10px var(--accent-glow);
+    border-bottom: 1px solid var(--accent);
+}
+
+/* ERROR MESSAGE STYLING */
+.error-message {
+    background: rgba(255, 59, 48, 0.15);
+    border: 1px solid rgba(255, 59, 48, 0.4);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 20px;
+    text-align: left;
+    animation: fadeIn 0.5s ease;
+}
+.error-message strong {
+    display: block;
+    color: #ff6b6b;
+    font-size: 13px;
+    margin-bottom: 4px;
+}
+.error-message p {
+    margin: 0;
+    font-size: 11px;
+    color: #e0e0e0;
+    line-height: 1.4;
+}
+.error-message a {
+    color: #fff;
+    text-decoration: underline;
+    font-weight: 600;
+}
+.error-message a:hover {
+    color: var(--accent);
+    text-shadow: 0 0 5px var(--accent-glow);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* SHAKE ANIMATION */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* HISTORY TABLE */
+.history-panel { margin-top: 20px; max-height: 200px; overflow-y: auto; }
+.history-table { width: 100%; border-collapse: collapse; color: #ccc; font-size: 13px; }
+.history-table th { text-align: left; padding: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); color: var(--accent); }
+.history-table td { padding: 10px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.history-table tr:first-child { animation: fadeIn 0.5s ease; }
+
+/* PDF BUTTON */
+.btn-pdf {
+    width: 100%; margin-top: 15px; padding: 10px;
+    background: transparent; border: 1px solid var(--accent);
+    color: var(--accent); border-radius: 6px; cursor: pointer;
+    font-size: 12px; font-weight: 600; transition: 0.3s;
+}
+.btn-pdf:hover { background: var(--accent); color: #000; }
+
+/* PDF TEMPLATE (Hidden from screen) */
+#pdfTemplate {
+    background: white; color: black; padding: 40px;
+    font-family: 'Helvetica', sans-serif;
+    position: absolute; top: -9999px; left: -9999px; width: 210mm;
+}
+.pdf-header { text-align: center; border-bottom: 2px solid #007bff; padding-bottom: 10px; margin-bottom: 20px; }
+.pdf-header h1 { margin: 0; color: #007bff; }
+.pdf-meta { margin-bottom: 20px; font-size: 14px; }
+.pdf-grid { display: flex; justify-content: space-between; margin: 20px 0; }
+.pdf-box { background: #f0f8ff; padding: 15px; width: 45%; border-radius: 8px; text-align: center; }
+.pdf-box h3 { margin: 5px 0 0 0; color: #333; font-size: 24px; }
+.pdf-footer { margin-top: 50px; text-align: center; font-size: 10px; color: #666; border-top: 1px solid #ddd; padding-top: 10px; }
+
+
+
+/* ... Mevcut CSS kodlarının en altına ekle ... */
+
+/* EKRANDA GİZLE (Sadece Yazdırırken Göster) */
+.print-only {
+    display: none;
+}
+
+/* YAZDIRMA AYARLARI */
+@media print {
+    /* Ekranda görünen her şeyi gizle */
+    .no-print, video, .overlay, .glass-panel, .academic-header, .footer-signature {
+        display: none !important;
+    }
+
+    body {
+        background: white !important;
+        color: black !important;
+        height: auto !important;
+        overflow: visible !important;
+    }
+
+    /* Rapor Şablonunu Göster */
+    .print-only {
+        display: block !important;
+        padding: 40px;
+        font-family: 'Helvetica', sans-serif;
+    }
+
+    /* Rapor Tasarımı */
+    .report-header { text-align: center; margin-bottom: 30px; }
+    .report-meta { margin-bottom: 30px; line-height: 1.6; }
+    
+    .report-results { 
+        display: flex; 
+        justify-content: space-between; 
+        margin-bottom: 30px; 
+        border: 1px solid #ddd;
+        padding: 20px;
+        border-radius: 8px;
+    }
+    
+    .r-box { text-align: center; flex: 1; }
+    .r-box span { color: #666; font-size: 12px; text-transform: uppercase; }
+    .r-box h2 { margin: 5px 0 0 0; color: #000; }
+
+    .report-chart { text-align: center; margin-bottom: 40px; }
+    .report-footer { 
+        text-align: center; 
+        margin-top: 50px; 
+        padding-top: 20px; 
+        border-top: 1px solid #ccc; 
+        font-size: 12px; 
+        color: #555; 
+    }
+}
