@@ -36,32 +36,39 @@ glucose-ai/
 └── README.md                # Proje dokümantasyonu
 ```
 
-1. Projeyi Klonlayın
+*1. Projeyi Klonlayın*
 ```bash
 git clone [https://github.com/berkantaksyy/glucose-ai.git](https://github.com/berkantaksyy/glucose-ai.git)
-cd glucose-ai ```
+cd glucose-ai
+```
 
-2. Sanal Ortam Oluşturun (Önerilen)
+*2. Sanal Ortam Oluşturun (Önerilen)*
 ```bash
+
 # Windows için
 python -m venv venv
-venv\Scripts\activate ```
+venv\Scripts\activate
+```
 
 # macOS/Linux için
 python3 -m venv venv
-source venv/bin/activate ```
+source venv/bin/activate 
+```
 
-3. Gerekli Kütüphaneleri Yükleyin
+*3. Gerekli Kütüphaneleri Yükleyin*
 ```bash
-pip install -r requirements.txt ```
+pip install -r requirements.txt
+```
 
-4. Uygulamayı Başlatın
+*4. Uygulamayı Başlatın*
 ```bash
-python app.py ```
+python app.py
+```
 
-5. Tarayıcıda Açın
+*5. Tarayıcıda Açın*
 ```bash
-Uygulama başladığında terminalde verilen adrese gidin (genellikle): http://127.0.0.1:5000 ```
+Uygulama başladığında terminalde verilen adrese gidin (genellikle): http://127.0.0.1:5000
+```
 
 
 🔬 Nasıl Çalışır?
