@@ -34,33 +34,34 @@ glucose-ai/
 ├── glikoz_regressor.pkl     # Eğitilmiş Makine Öğrenmesi Modeli
 ├── requirements.txt         # Gerekli Python kütüphaneleri
 └── README.md                # Proje dokümantasyonu
-'''
+```
 
 1. Projeyi Klonlayın
-'''bash
+```bash
 git clone [https://github.com/berkantaksyy/glucose-ai.git](https://github.com/berkantaksyy/glucose-ai.git)
-cd glucose-ai '''
+cd glucose-ai ```
 
 2. Sanal Ortam Oluşturun (Önerilen)
-'''bash
+```bash
 # Windows için
 python -m venv venv
-venv\Scripts\activate
+venv\Scripts\activate ```
 
 # macOS/Linux için
 python3 -m venv venv
-source venv/bin/activate '''
+source venv/bin/activate ```
 
 3. Gerekli Kütüphaneleri Yükleyin
-'''bash
-pip install -r requirements.txt '''
+```bash
+pip install -r requirements.txt ```
 
 4. Uygulamayı Başlatın
-'''bash
-python app.py '''
+```bash
+python app.py ```
 
 5. Tarayıcıda Açın
-Uygulama başladığında terminalde verilen adrese gidin (genellikle): http://127.0.0.1:5000
+```bash
+Uygulama başladığında terminalde verilen adrese gidin (genellikle): http://127.0.0.1:5000 ```
 
 
 🔬 Nasıl Çalışır?
