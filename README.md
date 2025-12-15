@@ -71,31 +71,37 @@ Uygulama başladığında terminalde verilen adrese gidin (genellikle): http://1
 ```
 
 
-🔬 Nasıl Çalışır?
-Giriş: Yetkili kullanıcı bilgileri ile sisteme giriş yapılır.
 
-Veri Yükleme: Potansiyostat cihazından alınan ham akım verisi (.csv veya .xlsx) sisteme yüklenir.
+## 🔬 Nasıl Çalışır?
 
-Referans Değer (Opsiyonel): Beklenen konsantrasyon değeri girilirse sistem sapma analizi yapar.
+Sistem, kullanıcı dostu 5 adımda analiz işlemini gerçekleştirir:
 
-Analiz: "RUN DIAGNOSTIC" butonuna basıldığında AI modeli veriyi işler.
+1.  🔐 **Güvenli Giriş**
+    Yetkili araştırmacı/kullanıcı bilgileri ile sisteme giriş yapılır.
 
-Sonuç: Tahmin edilen glikoz değeri (mM), sistem durumu ve sinyal grafiği ekrana gelir. "GENERATE OFFICIAL REPORT" butonu ile sonuçlar yazdırılabilir.
+2.  📂 **Veri Yükleme**
+    Potansiyostat cihazından alınan ham akım verisi (`.csv` veya `.xlsx`) sürükle-bırak yöntemiyle sisteme yüklenir.
 
+3.  ⚖️ **Referans Değer (Opsiyonel)**
+    Varsa beklenen konsantrasyon değeri girilir. Sistem bu değeri kullanarak **doğruluk ve sapma analizi** yapar.
 
-👥 Ekip ve Danışmanlar
-Geliştiriciler:
+4.  🧠 **Yapay Zeka Analizi**
+    `RUN DIAGNOSTIC` butonuna basıldığında model devreye girer; gürültüyü temizler, sinyali işler ve tahmini yapar.
 
-Berkant Aksoy - LinkedIn
+5.  📊 **Sonuç ve Raporlama**
+    * Tahmin edilen glikoz değeri (**mM**) ve sistem durumu görüntülenir.
+    * Sinyal grafiği üzerinde pik noktaları işaretlenir.
+    * 🖨️ **Rapor:** `GENERATE OFFICIAL REPORT` butonu ile imzalı, resmi laboratuvar raporu oluşturulur.
 
-Ece Ayfer
+---
 
-Danışmanlar:
+## 👥 Ekip ve Danışmanlar
 
-Prof. Dr. Mustafa ŞEN
+Bu proje, akademik bir çerçevede uzman danışman kadrosu rehberliğinde geliştirilmiştir.
 
-Doç. Dr. Volkan KILIÇ
-
-
+| 💻 Geliştirici Ekibi | 🎓 Akademik Danışmanlar |
+| :--- | :--- |
+| **Berkant AKSOY** ([LinkedIn](https://www.linkedin.com/in/berkantaksyy/)) | **Prof. Dr. Mustafa ŞEN** |
+| **Ece AYFER** | **Doç. Dr. Volkan KILIÇ** |
 
 
