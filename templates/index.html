@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
 
@@ -109,8 +111,13 @@
 
     <div id="printArea" class="print-only">
         <div class="report-header">
-            <h1 style="color:#007bff; margin-bottom:5px;">LABORATORY ANALYSIS REPORT</h1>
-            <p>Non-Enzymatic Glucose Detection System</p>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <h1 style="color:#007bff; margin-bottom:5px;">LABORATORY ANALYSIS REPORT</h1>
+                    <p>Non-Enzymatic Glucose Detection System</p>
+                </div>
+                <div id="qrcode" style="padding: 5px; background: white;"></div>
+            </div>
             <hr>
         </div>
         
@@ -132,7 +139,7 @@
         </div>
 
         <div class="report-chart">
-            <h3>Signal Analysis</h3>
+            <h3>Signal Analysis (Cyclic Voltammetry)</h3>
             <img id="pChartImg" style="width:100%; border:1px solid #ddd;">
         </div>
 
